@@ -1,14 +1,13 @@
-import bcrypt
-
 class User:
-    def __init__(self, id, name, email, password):
+    def __init__(self, id, name, lastname, age, email, phone, garden, password):
         self.id = id
         self.name = name
+        self.lastname = lastname
+        self.age = age
         self.email = email
-        self.password = self.hash_password(password)
-
-    def hash_password(self, password):
-        return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        self.phone = phone
+        self.garden = garden
+        self.password = password  # Almacenar la contraseña en texto plano
 
     def check_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
+        return self.password == password  # Comparar en texto plano
